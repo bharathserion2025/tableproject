@@ -36,14 +36,8 @@ const Example = () => {
   const columns = useMemo<MRT_ColumnDef<User>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'Id',
-        enableEditing: false,
-        size: 80,
-      },
-      {
         accessorKey: 'firstName',
-        header: 'First Name',
+        header: 'ItemName',
         muiEditTextFieldProps: {
           required: true,
           error: !!validationErrors?.firstName,
@@ -59,7 +53,7 @@ const Example = () => {
       },
       {
         accessorKey: 'lastName',
-        header: 'Last Name',
+        header: 'price',
         muiEditTextFieldProps: {
           required: true,
           error: !!validationErrors?.lastName,
@@ -74,9 +68,9 @@ const Example = () => {
       },
       {
         accessorKey: 'email',
-        header: 'Email',
+        header: 'cass',
         muiEditTextFieldProps: {
-          type: 'email',
+          type: 'text',
           required: true,
           error: !!validationErrors?.email,
           helperText: validationErrors?.email,
@@ -86,17 +80,6 @@ const Example = () => {
               ...validationErrors,
               email: undefined,
             }),
-        },
-      },
-      {
-        accessorKey: 'state',
-        header: 'State',
-        editVariant: 'select',
-        editSelectOptions: usStates,
-        muiEditTextFieldProps: {
-          select: true,
-          error: !!validationErrors?.state,
-          helperText: validationErrors?.state,
         },
       },
     ],
@@ -341,12 +324,7 @@ export default ExampleWithProviders;
 
 const validateRequired = (value: string) => !!value.length;
 const validateEmail = (email: string) =>
-  !!email.length &&
-  email
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    );
+  !!email.length
 
 function validateUser(user: User) {
   return {
